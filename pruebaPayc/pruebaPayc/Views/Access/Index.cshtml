@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="cont">
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <form class="col-12" id="frm">
+                    <div class="form-group pl-5" id="user-group">
+                        <input type="email" name="email" class="form-control" placeholder="Usuario"
+                               required>
+                    </div>
+                    <div class="form-group" id="password-group">
+                        <input type="password" name="pass" class="form-control" placeholder="Contraseña"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-success"> <span class="text-button">Ingresar</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#frm').submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/Access/Entrar")";
+                parametros = $(this).serialize();
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        alert("Login realizado con exito")
+                    } else {
+                        alert("Datos Incorrectos")
+                    }
+                })
+            })
+        })
+    </script>
+}
